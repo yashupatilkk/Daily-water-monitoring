@@ -261,7 +261,7 @@ body{
     display:grid;
     grid-template-columns:1fr;
     gap:30px;
-    opacity:0; /* Hidden initially for animation */
+    opacity:0;
     animation: fadeInPage 0.8s ease-out forwards;
 }
 
@@ -350,10 +350,9 @@ body{
 
 .table-wrap{
     overflow:auto;
-    max-height: 500px; /* Scroll internally if too long */
+    max-height: 500px;
 }
 
-/* Custom Scrollbar */
 .table-wrap::-webkit-scrollbar {
     width:8px;
     height:8px;
@@ -371,7 +370,7 @@ body{
 
 table{
     width:100%;
-    min-width:1000px; /* Force scroll on small screens */
+    min-width:1000px;
     border-collapse:collapse;
 }
 
@@ -386,7 +385,7 @@ th{
     border-bottom:1px solid var(--border);
     position: sticky;
     top: 0;
-    background: rgba(15, 23, 42, 0.95); /* Opaque background for sticky header */
+    background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(10px);
     z-index: 10;
 }
@@ -401,7 +400,6 @@ td{
     transition: background 0.2s;
 }
 
-/* Group Headers */
 .group-row th{
     background: rgba(37, 99, 235, 0.15);
     color: var(--blue);
@@ -419,7 +417,6 @@ td{
     background: rgba(255,255,255,0.03);
 }
 
-/* Data Colors */
 .pos{
     color:#4ade80;
     text-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
@@ -665,25 +662,84 @@ td{
     </div>
 
     <div class="footer">
-        &copy; <script>document.write(new Date().getFullYear())</script> Prestige TechnoStar • Analytics Dashboard v2.0
+        &copy; <script>document.write(new Date().getFullYear())</script> Prestige TechnoStar • Analytics Dashboard v2.1
     </div>
 
 </div>
 
 <script>
 
+// REMOVED CACHE BUSTING FOR STABILITY, BUT KEEP IN MIND IF SHEET IS EDITED LIVE
 const URL = "https://docs.google.com/spreadsheets/d/1b-8OGZK56Ejqm0SO44KzpCyo80awEODk/export?format=csv&gid=348275697";
 
-/* DATE UTILS */
+/* ROBUST DATE UTILS */
 
 function parseDate(str){
     if(!str) return null;
-    let p = str.split("/");
-    return new Date("20"+p[2],p[1]-1,p[0]);
+    str = str.trim();
+    
+    const currentYear = new Date().getFullYear();
+
+    // 1. Handle standard slash format (DD/MM/YY or DD/MM/YYYY)
+    if (str.includes('/')) {
+        let p = str.split('/');
+        // If it's just DD/MM, assume current year
+        let day = parseInt(p[0], 10);
+        let month = parseInt(p[1], 10) - 1; 
+        let year = p[2] ? (p[2].length === 2 ? 2000 + parseInt(p[2]) : parseInt(p[2])) : currentYear;
+        return new Date(year, month, day);
+    }
+
+    // 2. Handle Textual format (e.g., "Jun26", "26-Jun", "Jun 26")
+    // Map month names to numbers
+    const months = {
+        "jan":0, "feb":1, "mar":2, "apr":3, "may":4, "jun":5,
+        "jul":6, "aug":7, "sep":8, "oct":9, "nov":10, "dec":11
+    };
+
+    // Split by non-word characters to separate Month/Day/Year if spaces or dashes exist
+    // OR use regex to extract parts if compact like "Jun26"
+    let parts = str.match(/([a-zA-Z]+)|(\d+)/g);
+
+    if(parts && parts.length >= 2) {
+        let monthIndex = -1;
+        let day = -1;
+        let year = currentYear;
+
+        parts.forEach(p => {
+            let lowerP = p.toLowerCase();
+            if(months.hasOwnProperty(lowerP)) {
+                monthIndex = months[lowerP];
+            } else {
+                let num = parseInt(p, 10);
+                if (num > 31) { 
+                    // Likely a year
+                    year = num; 
+                } else if (num <= 31) {
+                    // Likely a day
+                    day = num;
+                }
+            }
+        });
+
+        if (monthIndex !== -1 && day !== -1) {
+            return new Date(year, monthIndex, day);
+        }
+    }
+
+    // 3. Fallback: Native JS parsing (good for ISO strings)
+    let d = new Date(str);
+    if(!isNaN(d.getTime())) return d;
+
+    console.warn("Could not parse date:", str);
+    return null;
 }
 
 function sameDate(d1,d2){
-    return d1 && d1.getDate()==d2.getDate() && d1.getMonth()==d2.getMonth() && d1.getFullYear()==d2.getFullYear();
+    if(!d1 || !d2) return false;
+    return d1.getDate()==d2.getDate() && 
+           d1.getMonth()==d2.getMonth() && 
+           d1.getFullYear()==d2.getFullYear();
 }
 
 function prettyDate(d){
@@ -755,6 +811,7 @@ function load(){
             let y1 = new Date(); y1.setDate(now.getDate()-1);
             let y2 = new Date(); y2.setDate(now.getDate()-2);
 
+            // NOTE: Assuming date is in index 1. If CSV structure changes, update index.
             let todayRow = data.find(r=>sameDate(parseDate(r[1]),now));
             let yRow = data.find(r=>sameDate(parseDate(r[1]),y1));
             let y2Row = data.find(r=>sameDate(parseDate(r[1]),y2));
