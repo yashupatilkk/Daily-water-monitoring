@@ -11,32 +11,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{ margin:0; padding:0; box-sizing:border-box; }
 
 :root{
-    /* THEME: TACTICAL DARK */
     --bg-dark: #050505;
     --bg-panel: #0f0f11;
     --bg-input: #161618;
-
-    --primary: #00ff9d; /* Neon Green */
-    --primary-dim: rgba(0, 255, 157, 0.1);
-    
-    --accent: #3b82f6; /* Data Blue */
+    --primary: #00ff9d;
+    --primary-dim: rgba(0,255,157,0.1);
+    --accent: #3b82f6;
     --warning: #f59e0b;
     --danger: #ef4444;
-
     --border: #2a2a2e;
-    --border-hover: #404046;
-
     --text-main: #e2e2e2;
     --text-muted: #85858c;
     --text-bright: #ffffff;
-
     --font-ui: 'Inter', sans-serif;
     --font-data: 'JetBrains Mono', monospace;
 }
@@ -44,10 +33,9 @@
 body{
     font-family: var(--font-ui);
     background-color: var(--bg-dark);
-    /* Tech Grid Background */
     background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
     color: var(--text-main);
     min-height: 100vh;
@@ -57,32 +45,23 @@ body{
     align-items: center;
 }
 
-/* SUBTLE SCANLINE EFFECT */
 body::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    content:" ";
+    display:block;
+    position:absolute;
+    top:0;left:0;bottom:0;right:0;
+    background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%);
     background-size: 100% 4px;
-    z-index: -1;
-    pointer-events: none;
+    z-index:-1;
+    pointer-events:none;
 }
 
 .container{ 
-    width:100%; 
-    max-width:1600px; 
-    margin:0 auto; 
-    padding:20px; 
-    position: relative; 
-    z-index: 1;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+    width:100%; max-width:1600px; margin:0 auto; padding:20px; 
+    position:relative; z-index:1; flex:1; 
+    display:flex; flex-direction:column; gap:24px; 
 }
 
-/* --- HEADER --- */
 .header{
     background: var(--bg-panel);
     border: 1px solid var(--border);
@@ -99,281 +78,176 @@ body::before {
 .header-left{ display:flex; align-items:center; gap:20px; }
 
 .logo-box{
-    width: 48px; height: 48px;
-    background: var(--primary-dim);
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    border-radius: 4px;
-    display:flex; align-items:center; justify-content:center; 
-    font-size: 1.5rem;
+    width:48px;height:48px;
+    background:var(--primary-dim);
+    border:1px solid var(--primary);
+    color:var(--primary);
+    border-radius:4px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.5rem;
 }
 
 .title-group h1{
-    font-size: 1.5rem; 
-    font-weight: 700; 
-    color: var(--text-bright);
-    letter-spacing: -0.5px;
-    text-transform: uppercase;
+    font-size:1.5rem;font-weight:700;color:var(--text-bright);
+    letter-spacing:-0.5px;text-transform:uppercase;
 }
-
 .title-group p{ 
-    font-size: 0.75rem; 
-    color: var(--primary); 
-    font-weight: 600; 
-    text-transform: uppercase; 
-    letter-spacing: 1.5px; 
-    margin-top: 4px;
+    font-size:0.75rem;color:var(--primary);font-weight:600;
+    text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;
 }
 
 .status-panel{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--bg-input);
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
+    display:flex;align-items:center;gap:12px;
+    background:var(--bg-input);padding:8px 16px;
+    border:1px solid var(--border);border-radius:4px;
+    cursor:pointer;user-select:none;
 }
 
-.led {
-    width: 10px; height: 10px;
-    border-radius: 2px;
-    background: #333;
-    box-shadow: 0 0 0 rgba(0,0,0,0);
-    transition: all 0.3s;
+.led{
+    width:10px;height:10px;border-radius:2px;
+    background:#333;box-shadow:0 0 0 rgba(0,0,0,0);transition:all 0.3s;
 }
-.led.active-green { background: var(--primary); box-shadow: 0 0 10px var(--primary); }
-.led.active-yellow { background: var(--warning); box-shadow: 0 0 10px var(--warning); }
-.led.active-red { background: var(--danger); box-shadow: 0 0 10px var(--danger); }
+.led.active-green{background:var(--primary);box-shadow:0 0 10px var(--primary);}
+.led.active-yellow{background:var(--warning);box-shadow:0 0 10px var(--warning);}
+.led.active-red{background:var(--danger);box-shadow:0 0 10px var(--danger);}
 
-.statusText {
-    font-family: var(--font-data);
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
+.statusText{font-family:var(--font-data);font-size:0.85rem;font-weight:700;color:var(--text-main);}
 
-/* --- STATS GRID --- */
 .stats-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;
 }
 
 .stat-card{
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    position: relative;
-    transition: border-color 0.3s;
+    background:var(--bg-panel);border:1px solid var(--border);
+    padding:16px;display:flex;flex-direction:column;gap:8px;
+    transition:border-color 0.3s;
 }
+.stat-card:hover{border-color:var(--text-muted);}
 
-.stat-card:hover {
-    border-color: var(--text-muted);
-}
+.stat-label{font-size:0.7rem;text-transform:uppercase;color:var(--text-muted);font-weight:600;letter-spacing:1px;}
+.stat-value{font-family:var(--font-data);font-size:1.5rem;font-weight:700;color:var(--text-bright);}
+.stat-sub{font-size:0.7rem;color:var(--accent);margin-top:auto;font-family:var(--font-data);}
 
-.stat-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.stat-value {
-    font-family: var(--font-data);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-bright);
-}
-
-.stat-sub {
-    font-size: 0.7rem;
-    color: var(--accent);
-    margin-top: auto;
-    font-family: var(--font-data);
-}
-
-/* --- PANELS & TABLES --- */
-.panels-container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    flex: 1;
-}
+.panels-container{display:flex;flex-direction:column;gap:24px;flex:1;}
 
 .panel{
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    min-height: 300px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    background:var(--bg-panel);border:1px solid var(--border);
+    display:flex;flex-direction:column;min-height:300px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 .panel-header{
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding:16px 24px;border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,0.02);
+    display:flex;justify-content:space-between;align-items:center;
 }
 
-.header-title-group {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+.header-title-group{display:flex;align-items:center;gap:16px;}
+
+.panel-icon{
+    width:36px;height:36px;background:var(--bg-input);
+    border:1px solid var(--border);color:var(--text-bright);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;border-radius:4px;
 }
 
-.panel-icon {
-    width: 36px; height: 36px;
-    background: var(--bg-input);
-    border: 1px solid var(--border);
-    color: var(--text-bright);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-    border-radius: 4px;
+.panel-title h2{font-size:1rem;font-weight:700;color:var(--text-bright);text-transform:uppercase;}
+.panel-date{font-family:var(--font-data);font-size:0.75rem;color:var(--text-muted);margin-top:2px;}
+
+.badge{
+    background:var(--bg-input);border:1px solid var(--border);
+    padding:4px 10px;font-size:0.65rem;text-transform:uppercase;
+    font-weight:700;letter-spacing:1px;color:var(--text-muted);border-radius:2px;
 }
 
-.panel-title h2 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-bright);
-    text-transform: uppercase;
+.table-wrap{overflow-x:auto;flex:1;}
+
+table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+
+th{
+    text-align:left;padding:12px 16px;font-family:var(--font-ui);
+    font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;
+    background:var(--bg-dark);color:var(--text-muted);
+    border-bottom:2px solid var(--border);position:sticky;top:0;z-index:10;
 }
 
-.panel-date {
-    font-family: var(--font-data);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 2px;
+td{
+    padding:14px 16px;border-bottom:1px solid var(--border);
+    color:var(--text-main);font-family:var(--font-data);font-size:0.85rem;
 }
 
-.badge {
-    background: var(--bg-input);
-    border: 1px solid var(--border);
-    padding: 4px 10px;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    border-radius: 2px;
+.group-row th{background:#1a1a1d;color:var(--primary);font-weight:700;letter-spacing:0.5px;border-bottom:1px solid var(--primary);}
+.sub-row th{background:#0f0f11;font-weight:600;border-bottom:1px solid #333;}
+.data-row:hover td{background:rgba(255,255,255,0.03);color:var(--text-bright);}
+
+.pos{color:var(--primary);font-weight:700;}
+.neg{color:var(--danger);font-weight:700;}
+.zero{color:var(--text-muted);opacity:0.6;}
+.na{color:var(--text-muted);font-style:italic;font-size:0.8rem;}
+.pending-text{color:var(--warning);font-weight:600;}
+
+.error-msg{color:var(--danger);font-weight:bold;padding:40px;text-align:center;font-size:1.1rem;border-bottom:1px solid var(--border);background:rgba(239,68,68,0.05);}
+.error-detail{color:var(--text-muted);font-size:0.8rem;font-weight:400;margin-top:10px;font-family:var(--font-data);word-break:break-all;line-height:1.7;}
+.error-detail b{color:var(--warning);}
+
+.footer{
+    margin-top:20px;padding:20px;text-align:center;
+    color:var(--text-muted);font-size:0.7rem;
+    border-top:1px solid var(--border);width:100%;
+    text-transform:uppercase;letter-spacing:1px;
 }
 
-/* TABLE STYLES */
-.table-wrap{
-    overflow-x: auto;
-    flex: 1;
-}
+#loader{position:fixed;inset:0;background:var(--bg-dark);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s ease;}
+.spinner{width:60px;height:60px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite;}
+.loader-text{margin-top:15px;color:var(--primary);font-weight:600;letter-spacing:2px;font-family:var(--font-data);font-size:0.9rem;animation:pulse 1.5s infinite;}
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-}
+@keyframes spin{100%{transform:rotate(360deg);}}
+@keyframes pulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
 
-th {
-    text-align: left;
-    padding: 12px 16px;
-    font-family: var(--font-ui);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: var(--bg-dark);
-    color: var(--text-muted);
-    border-bottom: 2px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+/* DEBUG PANEL */
+#debugBox{
+    display:none;position:fixed;bottom:10px;right:10px;
+    width:500px;max-height:400px;overflow-y:auto;
+    background:#0a0a0a;border:1px solid var(--danger);
+    border-radius:6px;padding:16px;
+    font-family:var(--font-data);font-size:0.7rem;
+    color:var(--danger);z-index:10000;
+    box-shadow:0 0 60px rgba(239,68,68,0.15);
 }
+.dbg-title{color:var(--warning);font-weight:700;margin-bottom:8px;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;}
+.dbg-line{padding:3px 0;border-bottom:1px solid #1a1a1a;color:#888;word-break:break-all;line-height:1.5;}
+.dbg-err{color:var(--danger)!important;}
+.dbg-ok{color:var(--primary)!important;}
+.dbg-warn{color:var(--warning)!important;}
 
-td {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-main);
-    font-family: var(--font-data);
-    font-size: 0.85rem;
+.dbg-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;}
+.dbg-btn{
+    padding:6px 14px;font-size:0.7rem;font-family:var(--font-data);
+    font-weight:700;text-transform:uppercase;letter-spacing:0.5px;
+    border:1px solid var(--border);background:var(--bg-input);
+    color:var(--text-main);border-radius:3px;cursor:pointer;
+    transition:all 0.2s;
 }
+.dbg-btn:hover{border-color:var(--primary);color:var(--primary);}
+.dbg-btn.danger{border-color:var(--danger);color:var(--danger);}
+.dbg-btn.danger:hover{background:var(--danger);color:#fff;}
 
-/* Table Row Types from JS */
-.group-row th {
-    background: #1a1a1d;
-    color: var(--primary);
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid var(--primary);
+.dbg-url-input{
+    width:100%;margin-top:10px;padding:8px 10px;
+    background:var(--bg-dark);border:1px solid var(--border);
+    color:var(--text-bright);font-family:var(--font-data);font-size:0.7rem;
+    border-radius:3px;
 }
+.dbg-url-input:focus{outline:none;border-color:var(--accent);}
 
-.sub-row th {
-    background: #0f0f11;
-    font-weight: 600;
-    border-bottom: 1px solid #333;
-}
+.dbg-step{margin-top:12px;padding:10px;background:#0d0d0d;border:1px solid #222;border-radius:4px;line-height:1.8;color:#aaa;}
+.dbg-step b{color:var(--primary);}
+.dbg-step .num{color:var(--warning);font-weight:700;}
 
-.data-row:hover td {
-    background: rgba(255,255,255,0.03);
-    color: var(--text-bright);
-}
-
-/* Data Coloring (JS injected classes) */
-.pos { color: var(--primary); font-weight: 700; }
-.neg { color: var(--danger); font-weight: 700; }
-.zero { color: var(--text-muted); opacity: 0.6; }
-.na { color: var(--text-muted); font-style: italic; font-size: 0.8rem; }
-.pending-text { color: var(--warning); font-weight: 600; }
-.error-msg { color: var(--danger); font-weight: bold; padding: 40px; text-align: center; font-size: 1.1rem; border-bottom: 1px solid var(--border); }
-
-/* FOOTER */
-.footer {
-    margin-top: 20px;
-    padding: 20px;
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    border-top: 1px solid var(--border);
-    width: 100%;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* LOADER */
-#loader { 
-    position: fixed; inset: 0; 
-    background: var(--bg-dark); 
-    z-index: 9999; 
-    display: flex; flex-direction: column; 
-    align-items: center; justify-content: center; 
-    transition: opacity 0.5s ease; 
-}
-.spinner { 
-    width: 60px; height: 60px; 
-    border: 3px solid var(--border); 
-    border-top-color: var(--primary); 
-    border-radius: 50%; 
-    animation: spin 0.8s linear infinite; 
-}
-.loader-text { 
-    margin-top: 15px; 
-    color: var(--primary); 
-    font-weight: 600; 
-    letter-spacing: 2px; 
-    font-family: var(--font-data);
-    font-size: 0.9rem;
-    animation: pulse 1.5s infinite; 
-}
-
-@keyframes spin { 100% { transform: rotate(360deg); } }
-@keyframes pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .header { flex-direction: column; align-items: flex-start; }
-    .status-panel { width: 100%; justify-content: space-between; }
+@media(max-width:768px){
+    .header{flex-direction:column;align-items:flex-start;}
+    .status-panel{width:100%;justify-content:space-between;}
+    #debugBox{width:calc(100% - 20px);right:10px;}
 }
 
 </style>
@@ -386,6 +260,23 @@ td {
     <div class="loader-text">INITIALIZING PRESTIGE SYSTEM</div>
 </div>
 
+<div id="debugBox">
+    <div class="dbg-title">SYSTEM DIAGNOSTICS</div>
+    <div id="debugLog"></div>
+    <div class="dbg-actions">
+        <button class="dbg-btn" onclick="runTest()">Test Connection</button>
+        <button class="dbg-btn" onclick="tryAltUrl()">Try Alt URL</button>
+        <button class="dbg-btn danger" onclick="clearDbg()">Clear Log</button>
+    </div>
+    <input type="text" class="dbg-url-input" id="customUrl" placeholder="Paste custom CSV URL here and press Enter..." onkeydown="if(event.key==='Enter')loadCustomUrl()">
+    <div class="dbg-step">
+        <span class="num">1.</span> Open Google Sheet → <b>File</b> → <b>Share</b> → <b>Publish to web</b><br>
+        <span class="num">2.</span> Select <b>Entire Document</b> → Click <b>Publish</b><br>
+        <span class="num">3.</span> Click <b>"Test Connection"</b> button above<br>
+        <span class="num">4.</span> If still failing, paste URL manually below
+    </div>
+</div>
+
 <div class="container">
 
     <div class="header">
@@ -396,7 +287,7 @@ td {
                 <p>Auto-Switch Monitor</p>
             </div>
         </div>
-        <div class="status-panel">
+        <div class="status-panel" id="statusPanel" title="Click 5x for debug panel">
             <div id="statusDot" class="led"></div>
             <div class="statusText" id="status">STANDBY</div>
         </div>
@@ -410,13 +301,13 @@ td {
         </div>
         <div class="stat-card">
             <div class="stat-label">Data Source</div>
-            <div class="stat-value" style="font-size: 1.2rem;">DYNAMIC CSV</div>
+            <div class="stat-value" style="font-size:1.1rem;">LIVE CSV</div>
             <div class="stat-sub">Auto-Month Switch</div>
         </div>
         <div class="stat-card">
-            <div class="stat-label">System Integrity</div>
-            <div class="stat-value">100%</div>
-            <div class="stat-sub">Verified Stream</div>
+            <div class="stat-label">Data Integrity</div>
+            <div class="stat-value" id="integrityVal">--</div>
+            <div class="stat-sub" id="integritySub">Checking...</div>
         </div>
         <div class="stat-card">
             <div class="stat-label">Local Time</div>
@@ -426,8 +317,6 @@ td {
     </div>
 
     <div class="panels-container">
-
-        <!-- TODAY -->
         <div class="panel">
             <div class="panel-header">
                 <div class="header-title-group">
@@ -437,14 +326,11 @@ td {
                         <div class="panel-date" id="todayDate">LOADING...</div>
                     </div>
                 </div>
-                <div class="badge" style="color:var(--primary); border-color: var(--primary);">Realtime</div>
+                <div class="badge" style="color:var(--primary);border-color:var(--primary);">Realtime</div>
             </div>
-            <div class="table-wrap">
-                <table id="today"></table>
-            </div>
+            <div class="table-wrap"><table id="today"></table></div>
         </div>
 
-        <!-- YESTERDAY -->
         <div class="panel">
             <div class="panel-header">
                 <div class="header-title-group">
@@ -456,12 +342,9 @@ td {
                 </div>
                 <div class="badge">History</div>
             </div>
-            <div class="table-wrap">
-                <table id="yesterday"></table>
-            </div>
+            <div class="table-wrap"><table id="yesterday"></table></div>
         </div>
 
-        <!-- DAY BEFORE -->
         <div class="panel">
             <div class="panel-header">
                 <div class="header-title-group">
@@ -473,225 +356,361 @@ td {
                 </div>
                 <div class="badge">Archive</div>
             </div>
-            <div class="table-wrap">
-                <table id="before"></table>
-            </div>
+            <div class="table-wrap"><table id="before"></table></div>
         </div>
-
     </div>
 
     <div class="footer">
-        &copy; <script>document.write(new Date().getFullYear())</script> Prestige TechnoStar • Auto-Switch v6.0 • <span style="color:var(--primary)">System Online</span>
+        &copy; <script>document.write(new Date().getFullYear())</script> Prestige TechnoStar &bull; Auto-Switch v6.2 &bull; <span style="color:var(--primary)">System Online</span>
     </div>
 </div>
 
 <script>
 
 // ============================================================
-// IMPORTANT: AUTO-SWITCH SETUP
-// 1. Create a Google Sheet tab named "DashboardData".
-// 2. In B1: =TEXT(TODAY(), "MMMYY")  <-- This handles "May26", "Jun26" automatically.
-// 3. In A2: =IFERROR(ARRAYFORMULA(INDIRECT("'" & B1 & "'!A2:W")), "Sheet Not Found")
-// 4. Copy the GID of "DashboardData" and paste it below.
+// YOUR SHEET CONFIG
+// File ID: 1b-8OGZK56Ejqm0SO44KzpCyo80awEODk
+// GID: 550888696
+// Tab URL you gave: .../edit?gid=550888696#gid=550888696
 // ============================================================
-const URL = "https://docs.google.com/spreadsheets/d/1b-8OGZK56Ejqm0SO44KzpCyo80awEODk/edit?gid=550888696#gid=550888696";
 
-/* --- ROBUST DATE PARSING --- */
+const FILE_ID = "1b-8OGZK56Ejqm0SO44KzpCyo80awEODk";
+const GID     = "550888696";
+
+// TWO possible CSV endpoints — we try both
+const URL_EXPORT = `https://docs.google.com/spreadsheets/d/${FILE_ID}/export?format=csv&gid=${GID}`;
+const URL_PUB    = `https://docs.google.com/spreadsheets/d/${FILE_ID}/pub?output=csv&gid=${GID}`;
+
+// Active URL (can be overridden by user)
+let activeUrl = URL_EXPORT;
+
+// ---- DEBUG LOGGER ----
+const dbgLines = [];
+function dbg(msg, type = "") {
+    const ts = new Date().toLocaleTimeString();
+    dbgLines.push({ msg: `[${ts}] ${msg}`, type });
+    const el = document.getElementById("debugLog");
+    if (el) {
+        el.innerHTML = dbgLines.map(l =>
+            `<div class="dbg-line ${l.type}">${l.msg}</div>`
+        ).join("");
+        el.scrollTop = el.scrollHeight;
+    }
+    console.log(`[${type||"INFO"}] ${msg}`);
+}
+
+function clearDbg() {
+    dbgLines.length = 0;
+    document.getElementById("debugLog").innerHTML = "";
+}
+
+// Toggle debug: 5x click
+let clickCount = 0, clickTimer = null;
+document.getElementById("statusPanel").addEventListener("click", () => {
+    clickCount++;
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+    if (clickCount >= 5) {
+        clickCount = 0;
+        const box = document.getElementById("debugBox");
+        box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+});
+
+// ---- DATE HELPERS ----
 function parseDate(str) {
     if (!str) return null;
-    let cleanStr = str.toString().trim();
-    
-    // 1. Handle "YYYY-MM-DD" (Google Sheets standard)
-    if (cleanStr.match(/^\d{4}-\d{2}-\d{2}/)) {
-        let datePart = cleanStr.split(' ')[0]; 
-        let parts = datePart.split('-'); 
-        return new Date(parts[0], parts[1] - 1, parts[2]);
+    let s = str.toString().trim();
+    if (s.match(/^\d{4}-\d{2}-\d{2}/)) {
+        let p = s.split(' ')[0].split('-');
+        return new Date(p[0], p[1] - 1, p[2]);
     }
-
-    // 2. Handle "D/M/YY" or "DD/MM/YY" (e.g., 1/6/26, 01/06/26)
-    cleanStr = cleanStr.replace(/[-.]/g, '/'); 
-    
-    if (cleanStr.includes('/')) {
-        let parts = cleanStr.split('/');
-        if (parts.length === 3) {
-            let day = parseInt(parts[0], 10);
-            let month = parseInt(parts[1], 10) - 1; 
-            let year = parseInt(parts[2], 10);
+    s = s.replace(/[-.]/g, '/');
+    if (s.includes('/')) {
+        let p = s.split('/');
+        if (p.length === 3) {
+            let day = parseInt(p[0], 10);
+            let month = parseInt(p[1], 10) - 1;
+            let year = parseInt(p[2], 10);
             if (year < 100) year += (year < 50) ? 2000 : 1900;
-            
             let d = new Date(year, month, day);
             if (!isNaN(d.getTime())) return d;
         }
     }
-    console.warn("Could not parse date:", str);
     return null;
 }
 
-function sameDate(d1, d2){
+function sameDate(d1, d2) {
     if (!d1 || !d2) return false;
-    return d1.getDate() === d2.getDate() && 
-           d1.getMonth() === d2.getMonth() && 
-           d1.getFullYear() === d2.getFullYear();
+    return d1.getDate()===d2.getDate() && d1.getMonth()===d2.getMonth() && d1.getFullYear()===d2.getFullYear();
 }
 
-function prettyDate(d){
-    if (!d) return "Unknown Date";
-    return d.toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+function prettyDate(d) {
+    if (!d) return "Unknown";
+    return d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
 }
 
-/* --- UTILS --- */
-function updateClock(){
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+// ---- CLOCK ----
+function updateClock() {
     const el = document.getElementById("clock");
-    if(el) el.innerHTML = timeStr;
+    if(el) el.innerHTML = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
 setInterval(updateClock, 1000);
 
-function updateSyncTime(){
-    const now = new Date();
-    document.getElementById("lastSync").innerHTML = "Synced: " + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute:'2-digit' });
-}
-
-function setStatus(text, type="green"){
+function setStatus(text, type="green") {
     const el = document.getElementById("status");
     const dot = document.getElementById("statusDot");
     if(el) el.innerHTML = text.toUpperCase();
-    if(dot) dot.classList.remove('active-green', 'active-yellow', 'active-red');
-    if(type=="green"){ if(dot) dot.classList.add('active-green'); if(el) el.style.color = "var(--primary)"; }
-    else if(type=="yellow"){ if(dot) dot.classList.add('active-yellow'); if(el) el.style.color = "var(--warning)"; }
-    else if(type=="red"){ if(dot) dot.classList.add('active-red'); if(el) el.style.color = "var(--danger)"; }
+    if(dot) dot.classList.remove('active-green','active-yellow','active-red');
+    if(type==="green")  {if(dot)dot.classList.add('active-green');  if(el)el.style.color="var(--primary)";}
+    if(type==="yellow") {if(dot)dot.classList.add('active-yellow'); if(el)el.style.color="var(--warning)";}
+    if(type==="red")    {if(dot)dot.classList.add('active-red');    if(el)el.style.color="var(--danger)";}
 }
 
-/* --- MAIN DATA LOADING LOGIC --- */
-function load(){
+// ---- TEST CONNECTION (fetches raw text, shows first 200 chars) ----
+function runTest() {
+    dbg("── TESTING: " + activeUrl, "warn");
+    setStatus("Testing...", "yellow");
+
+    fetch(activeUrl, { mode: 'cors' })
+        .then(r => {
+            dbg("HTTP Status: " + r.status + " " + r.statusText, r.ok ? "ok" : "err");
+            dbg("Content-Type: " + r.headers.get('content-type'), "warn");
+            return r.text();
+        })
+        .then(text => {
+            let preview = text.substring(0, 300).replace(/</g, "&lt;");
+            if (text.includes("<!DOCTYPE") || text.includes("<html") || text.includes("<HTML")) {
+                dbg("RESULT: Got HTML page (NOT CSV) — Sheet is NOT published!", "err");
+                dbg("Preview: " + preview, "err");
+                setStatus("Not Published", "red");
+            } else if (text.trim().length === 0) {
+                dbg("RESULT: Empty response — Sheet tab is empty or GID is wrong", "err");
+                setStatus("Empty", "red");
+            } else {
+                dbg("RESULT: Got CSV data!", "ok");
+                dbg("Preview: " + preview, "ok");
+                // Count rows
+                let lines = text.split('\n').filter(l => l.trim());
+                dbg("Total CSV lines: " + lines.length, "ok");
+                setStatus("Connected!", "green");
+                // Now do the real load
+                loadWithUrl(activeUrl);
+            }
+        })
+        .catch(err => {
+            dbg("FETCH ERROR: " + err.message, "err");
+            dbg("This usually means: CORS blocked, network error, or sheet not published.", "err");
+            setStatus("Failed", "red");
+        });
+}
+
+// ---- TRY ALTERNATE URL ----
+function tryAltUrl() {
+    if (activeUrl === URL_EXPORT) {
+        activeUrl = URL_PUB;
+        dbg("Switched to PUB endpoint: " + URL_PUB, "warn");
+    } else {
+        activeUrl = URL_EXPORT;
+        dbg("Switched to EXPORT endpoint: " + URL_EXPORT, "warn");
+    }
+    document.getElementById("customUrl").value = activeUrl;
+    runTest();
+}
+
+// ---- LOAD WITH CUSTOM URL ----
+function loadCustomUrl() {
+    let url = document.getElementById("customUrl").value.trim();
+    if (!url) return;
+    activeUrl = url;
+    dbg("Using custom URL: " + url, "warn");
+    loadWithUrl(url);
+}
+
+// ---- MAIN LOAD ----
+function load() {
+    dbg("══════ AUTO LOAD ══════");
+    dbg("URL: " + activeUrl);
     setStatus("Connecting", "yellow");
-    
-    // 1. CALCULATE TARGET DATES IMMEDIATELY (FIXES THE "SEARCHING..." ISSUE)
+    loadWithUrl(activeUrl);
+}
+
+function loadWithUrl(url) {
     const now = new Date();
     const y1 = new Date(); y1.setDate(now.getDate()-1);
     const y2 = new Date(); y2.setDate(now.getDate()-2);
 
-    // 2. UPDATE HEADERS WITH SYSTEM DATE (Even if data isn't found yet)
     document.getElementById("todayDate").innerHTML = prettyDate(now);
     document.getElementById("yesterdayDate").innerHTML = prettyDate(y1);
     document.getElementById("beforeDate").innerHTML = prettyDate(y2);
-    
-    console.log("--- STARTING DATA LOAD ---");
-    console.log("Target Today:", now.toDateString());
-    console.log("Target Yesterday:", y1.toDateString());
-    
-    Papa.parse(URL, {
+
+    dbg("Today target: " + now.toDateString());
+    dbg("Yesterday target: " + y1.toDateString());
+
+    Papa.parse(url, {
         download: true,
         skipEmptyLines: true,
-        complete: function(res){
+        timeout: 15000,
+        complete: function(res) {
+            dbg("PapaParse done. Rows: " + res.data.length + " Delimiter: '" + res.meta.delimiter + "'");
+
+            // HTML check
+            if (res.data.length > 0) {
+                let first = (res.data[0][0]||"").toString().trim();
+                if (first.startsWith("<!") || first.startsWith("<html") || first.includes("DOCTYPE")) {
+                    dbg("Got HTML — Sheet NOT published!", "err");
+                    setStatus("Not Published", "red");
+                    renderError("GOOGLE SHEET NOT PUBLISHED",
+                        "Received an HTML login page instead of CSV.<br><br>" +
+                        "<b>Step 1:</b> Open your Google Sheet<br>" +
+                        "<b>Step 2:</b> Click <b>File → Share → Publish to web</b><br>" +
+                        "<b>Step 3:</b> Select <b>Entire Document</b> → Click <b>Publish</b><br>" +
+                        "<b>Step 4:</b> Wait 30 seconds, then click <b>Test Connection</b> in the debug panel");
+                    document.getElementById("debugBox").style.display = "block";
+                    hideLoader();
+                    return;
+                }
+            }
+
             let rows = res.data;
-            
-            if (rows.length > 0 && (rows[0][0] === "MONTHLY SHEET NOT FOUND" || rows[0][0].includes("NOT FOUND"))) {
-                console.error("Error: Monthly sheet not found.");
-                setStatus("Sheet Missing", "yellow");
-                renderError("MONTHLY SHEET NOT FOUND");
+
+            if (rows.length === 0) {
+                dbg("Zero rows returned.", "err");
+                setStatus("Empty Sheet", "red");
+                renderError("SHEET IS EMPTY",
+                    "Published sheet returned 0 rows. Check that DashboardData tab has data.");
+                document.getElementById("debugBox").style.display = "block";
                 hideLoader();
                 return;
             }
 
-            if(rows.length < 3){ 
-                setStatus("Data Error", "red"); 
-                hideLoader(); 
-                return; 
+            // INDIRECT "NOT FOUND" check
+            if (rows[0][0] && rows[0][0].toString().toUpperCase().includes("NOT FOUND")) {
+                dbg("INDIRECT() failed: " + rows[0][0], "err");
+                setStatus("Sheet Missing", "yellow");
+                renderError("MONTHLY SHEET NOT FOUND",
+                    "Your INDIRECT formula in DashboardData couldn't find the month tab.<br><br>" +
+                    "<b>Check B1</b> should show current MMMYY (e.g. Jun25)<br>" +
+                    "<b>Check</b> a tab with that exact name exists.");
+                document.getElementById("debugBox").style.display = "block";
+                hideLoader();
+                return;
             }
 
-            // Structure
+            if (rows.length < 3) {
+                dbg("Only " + rows.length + " rows, need 3+.", "err");
+                setStatus("Data Error", "red");
+                renderError("INSUFFICIENT DATA",
+                    "Need 3+ rows (Group + Sub + Data). Got " + rows.length + ".<br><br>" +
+                    "Row 1: <b>" + (rows[0].join(" | ")||"(empty)") + "</b><br>" +
+                    "Row 2: <b>" + ((rows[1]||[]).join(" | ")||"(empty)") + "</b>");
+                document.getElementById("debugBox").style.display = "block";
+                hideLoader();
+                return;
+            }
+
             let group = rows[0];
             let h1 = rows[1];
             let data = rows.slice(2);
-            
-            // Search logic
-            let todayRow = data.find(r => sameDate(parseDate(r[1]), now));
-            let yRow = data.find(r => sameDate(parseDate(r[1]), y1));
-            let y2Row = data.find(r => sameDate(parseDate(r[1]), y2));
 
-            // Fallback logic
-            let validRows = data.filter(r => parseDate(r[1]) !== null);
-            validRows.sort((a, b) => parseDate(b[1]) - parseDate(a[1]));
+            dbg("Group: " + group.length + " cols → " + group.slice(0,4).join(" | "));
+            dbg("Sub: " + h1.length + " cols → " + h1.slice(0,4).join(" | "));
+            dbg("Data rows: " + data.length);
 
-            if (!todayRow && validRows.length > 0) todayRow = validRows[0];
-            if (!yRow && validRows.length > 1) yRow = validRows[1];
-            if (!y2Row && validRows.length > 2) y2Row = validRows[2];
+            // Debug first 5 rows
+            data.slice(0,5).forEach((r,i) => {
+                dbg("  Row" + i + ": col0='" + (r[0]||"") + "' col1='" + (r[1]||"") + "' → " + (parseDate(r[1]) ? parseDate(r[1]).toDateString() : "NULL"));
+            });
 
-            // Render Tables
-            if (todayRow) {
-                // Optional: Update header to match exact sheet date if different
-                // document.getElementById("todayDate").innerHTML = prettyDate(parseDate(todayRow[1]));
-                drawTable("today", group, h1, [], todayRow);
-                drawTable("yesterday", group, h1, [], yRow);
-                drawTable("before", group, h1, [], y2Row);
-                setStatus("System Online", "green");
-            } else {
-                // If absolutely no data, tables will show "No Data" but Dates are correct
-                renderError("NO DATA FOUND IN SHEET");
-                setStatus("No Data", "red");
+            // Find matches
+            let todayRow=null, yRow=null, y2Row=null;
+            for (let r of data) {
+                let d = parseDate(r[1]);
+                if (!d) continue;
+                if (sameDate(d,now) && !todayRow) todayRow=r;
+                else if (sameDate(d,y1) && !yRow) yRow=r;
+                else if (sameDate(d,y2) && !y2Row) y2Row=r;
             }
 
-            updateSyncTime();
+            dbg("Matches → Today:" + (todayRow?"Y":"N") + " Yesterday:" + (yRow?"Y":"N") + " DayBefore:" + (y2Row?"Y":"N"));
+
+            // Fallback
+            let valid = data.filter(r => parseDate(r[1])).sort((a,b) => parseDate(b[1]) - parseDate(a[1]));
+            if (!todayRow && valid.length>0) { todayRow=valid[0]; dbg("FALLBACK Today→"+parseDate(todayRow[1]).toDateString(),"warn"); }
+            if (!yRow && valid.length>1) { yRow=valid[1]; dbg("FALLBACK Yesterday→"+parseDate(yRow[1]).toDateString(),"warn"); }
+            if (!y2Row && valid.length>2) { y2Row=valid[2]; dbg("FALLBACK DayBefore→"+parseDate(y2Row[1]).toDateString(),"warn"); }
+
+            // Render
+            drawTable("today", group, h1, todayRow);
+            drawTable("yesterday", group, h1, yRow);
+            drawTable("before", group, h1, y2Row);
+
+            let found = [todayRow,yRow,y2Row].filter(Boolean).length;
+            document.getElementById("integrityVal").innerHTML = Math.round((found/3)*100)+"%";
+            document.getElementById("integritySub").innerHTML = found+"/3 days matched";
+
+            if (found===3) { setStatus("System Online","green"); dbg("ALL 3 DAYS LOADED.","ok"); }
+            else if (found>0) { setStatus("Partial Data","yellow"); dbg("PARTIAL: "+found+"/3","warn"); document.getElementById("debugBox").style.display="block"; }
+            else { setStatus("No Match","red"); dbg("NO MATCHES.","err"); document.getElementById("debugBox").style.display="block"; }
+
+            document.getElementById("lastSync").innerHTML = "Synced: " + new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
             hideLoader();
         },
-        error: function(err){
+        error: function(err) {
+            dbg("PapaParse ERROR: " + err.message, "err");
             setStatus("Connection Failed", "red");
-            console.error(err);
-            renderError("CONNECTION FAILED");
+            renderError("CONNECTION FAILED",
+                "Could not fetch the sheet.<br><br>" +
+                "<b>1.</b> Publish: File → Share → Publish to web → Entire Document → Publish<br>" +
+                "<b>2.</b> Then click <b>Test Connection</b> in the debug panel (click status 5x)<br>" +
+                "<b>3.</b> Or try <b>Try Alt URL</b> button<br><br>" +
+                "Error: " + err.message);
+            document.getElementById("debugBox").style.display = "block";
             hideLoader();
         }
     });
 }
 
-function renderError(message) {
-    let errorMsg = `<tr><td colspan="100%" class="error-msg">⚠️ ${message}</td></tr>`;
-    document.getElementById("today").innerHTML = errorMsg;
-    document.getElementById("yesterday").innerHTML = errorMsg;
-    document.getElementById("before").innerHTML = errorMsg;
+function renderError(title, detail) {
+    let h = `<tr><td colspan="100%" class="error-msg">⚠️ ${title}<div class="error-detail">${detail}</div></td></tr>`;
+    document.getElementById("today").innerHTML = h;
+    document.getElementById("yesterday").innerHTML = h;
+    document.getElementById("before").innerHTML = h;
 }
 
-function drawTable(id, group, h1, h2, row){
-    let html = "";
-    // Group Header
-    html += `<tr class="group-row">`;
-    group.forEach(x=>{ html += `<th>${x || ""}</th>`; });
-    html += `</tr>`;
-    // Sub Header
-    html += `<tr class="sub-row">`;
-    h1.forEach(x=>{ html += `<th>${x || ""}</th>`; });
-    html += `</tr>`;
-    
-    // Data Row
-    html += `<tr class="data-row">`;
-    if(row){
+function drawTable(id, group, h1, row) {
+    let html = `<tr class="group-row">`;
+    group.forEach(x => { html += `<th>${x||""}</th>`; });
+    html += `</tr><tr class="sub-row">`;
+    h1.forEach(x => { html += `<th>${x||""}</th>`; });
+    html += `</tr><tr class="data-row">`;
+    if (row) {
         row.forEach(val => {
-            let cleanVal = val ? val.toString().trim() : "";
-            if (cleanVal.toLowerCase().includes("pending")) html += `<td class="pending-text">${cleanVal}</td>`;
-            else if (cleanVal === "") html += `<td class="na">-</td>`;
-            else if (!isNaN(cleanVal)) {
-                let num = Number(cleanVal);
-                if (num < 0) html += `<td class="zero">0</td>`;
-                else if (num > 0) html += `<td class="pos">${num}</td>`;
+            let c = val ? val.toString().trim() : "";
+            if (c.toLowerCase().includes("pending")) html += `<td class="pending-text">${c}</td>`;
+            else if (c === "") html += `<td class="na">-</td>`;
+            else if (!isNaN(c) && c !== "") {
+                let n = Number(c);
+                if (n < 0) html += `<td class="neg">${n}</td>`;
+                else if (n > 0) html += `<td class="pos">${n}</td>`;
                 else html += `<td class="zero">0</td>`;
             }
-            else html += `<td class="zero">${cleanVal}</td>`;
+            else html += `<td>${c}</td>`;
         });
     } else {
-        h1.forEach(()=>{ html += `<td class="na">NO DATA</td>`; });
+        h1.forEach(() => { html += `<td class="na">NO DATA</td>`; });
     }
     html += `</tr>`;
     document.getElementById(id).innerHTML = html;
 }
 
 function hideLoader() {
-    const loader = document.getElementById('loader');
-    if(loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => { loader.style.display = 'none'; }, 500);
-    }
+    const l = document.getElementById('loader');
+    if(l) { l.style.opacity='0'; setTimeout(()=>{l.style.display='none';},500); }
 }
+
+// Set initial URL in input
+document.getElementById("customUrl").value = activeUrl;
 
 // Start
 load();
